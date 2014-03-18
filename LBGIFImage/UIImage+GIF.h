@@ -12,7 +12,6 @@
 
 +(UIImage*)animatedGIFNamed:(NSString*)name;
 +(UIImage*)animatedGIFWithData:(NSData *)data;
-+(UIImage*)animatedGIFWithData:(NSData *)data duration:(NSTimeInterval)duration;
 
 -(UIImage*)animatedImageByScalingAndCroppingToSize:(CGSize)size;
 
