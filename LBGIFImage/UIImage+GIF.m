@@ -12,6 +12,10 @@
 @implementation UIImage (GIF)
 
 +(UIImage*)animatedGIFWithData:(NSData *)data {
+    return [self animatedGIFWithData:data duration:0];
+}
+
++(UIImage*)animatedGIFWithData:(NSData *)data duration:(NSTimeInterval)inDuration {
     if (!data) {
         return nil;
     }
@@ -21,7 +25,7 @@
     size_t count = CGImageSourceGetCount(source);
     NSMutableArray* images = [NSMutableArray array];
     
-    NSTimeInterval duration = 0.0f;
+    NSTimeInterval duration = inDuration;
     
     for (size_t i = 0; i < count; i++) {
         CGImageRef image = CGImageSourceCreateImageAtIndex(source, i, NULL);
@@ -35,8 +39,8 @@
     }
     
     CFRelease(source);
-    
-    if (!duration) {
+
+    if (!duration || duration == 0) {
         duration = (1.0f/10.0f)*count;
     }
     
